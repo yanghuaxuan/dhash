@@ -1,7 +1,9 @@
 console.log("Hello");
 
-function dHash(img: string) {
-  return img;
+class DHash {
+  dHash(img: string) {
+    return img;
+  }
 }
 
-export default dHash;
+export default DHash;
