@@ -1,7 +1,5 @@
-console.log("Hello");
-
 class DHash {
-  dHash(img: string) {
+  static dHash(img: string) {
     return img;
   }
 }

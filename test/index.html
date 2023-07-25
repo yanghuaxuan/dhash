@@ -13,15 +13,5 @@
             <input accept="image/*" id="image" type="file">
         </form>
     </body>
-    <script>
-        const input = document.querySelector("input");
-        input.addEventListener("input", () => {
-            console.log(image)
-            const img = new Image(400, 400)
-            img.src = URL.createObjectURL(input.files[0]);
-
-            document.body.append(img)
-            console.log(img)
-            })
-    </script>
+    <script src="dist/bundle.js"></script>
 </html>

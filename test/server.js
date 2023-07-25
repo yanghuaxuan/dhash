@@ -16,6 +16,10 @@ fastify.get("/", (request, reply) => {
   reply.sendFile("index.html");
 });
 
+fastify.get("/dhash", (request, reply) => {
+  reply.sendFile("bundle.js");
+});
+
 // Run the server!
 fastify.listen({ port: 3000 }, (err, address) => {
   if (err) throw err;
