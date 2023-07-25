@@ -1,11 +1,19 @@
-import Fastify from "fastify";
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-const fastify = Fastify({
+// CommonJs
+const fastify = require("fastify")({
   logger: true
 });
 
+const path = require("path");
+
+fastify.register(require("@fastify/static"), {
+  root: path.join(__dirname),
+});
+
 fastify.get("/", (request, reply) => {
-  reply.send();
+  reply.sendFile("index.html");
 });
 
 // Run the server!
