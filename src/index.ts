@@ -1,3 +1,5 @@
+import Hermite from 'hermite-resize';
+
 /* Modifies an existing Canvas context, grayscaling it */
 const grayscale = (ctx: OffscreenCanvasRenderingContext2D) => {
   const imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -13,7 +15,16 @@ const grayscale = (ctx: OffscreenCanvasRenderingContext2D) => {
   ctx.putImageData(imgData, 0, 0);
 }
 
-const dHash = (path: string) => {
+const resize = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: number) => new Promise<void>((resolve) => {
+  const hermite = new Hermite();
+  const finish_handler = () => {
+    resolve();
+  }
+
+  hermite.resample(ctx.canvas, width, height, false, finish_handler);
+});
+
+const dHash = (path: string, hs = 8) => {
     return new Promise((resolve, reject) => {
       const img = new Image()
       img.src = path;
@@ -26,13 +37,17 @@ const dHash = (path: string) => {
           ctx.drawImage(img, 0, 0);
 
           grayscale(ctx);
-
-          canvas.convertToBlob().then((e) => {
+          resize(ctx, hs + 1, hs)
+          .then(() => {
+            return canvas.convertToBlob()
+          })
+          .then((e) => {
+            console.log(ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
             resolve(URL.createObjectURL(e));
           }).catch(e => {
             reject(e);
           });
-          }
+        }
       });
     })
   }
