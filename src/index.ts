@@ -1,6 +1,6 @@
 /* Modifies an existing Canvas context, grayscaling it */
-const grayscale = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: number) => {
-  const imgData = ctx.getImageData(0, 0, width, height);
+const grayscale = (ctx: OffscreenCanvasRenderingContext2D) => {
+  const imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   const data = imgData.data;
 
   for (let i = 0; i < data.length; i += 4) {
@@ -25,7 +25,7 @@ const dHash = (path: string) => {
         if (ctx) {
           ctx.drawImage(img, 0, 0);
 
-          grayscale(ctx, img.width, img.height);
+          grayscale(ctx);
 
           canvas.convertToBlob().then((e) => {
             resolve(URL.createObjectURL(e));
