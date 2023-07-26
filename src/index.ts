@@ -24,8 +24,8 @@ const resize = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: n
   hermite.resample(ctx.canvas, width, height, false, finish_handler);
 });
 
-const dHash = (path: string, hs = 8) => {
-    return new Promise((resolve, reject) => {
+const dHash = (path: string, hs = 8): Promise<Blob> => {
+    return new Promise((resolve) => {
       const img = new Image()
       img.src = path;
 
@@ -42,11 +42,8 @@ const dHash = (path: string, hs = 8) => {
             return canvas.convertToBlob()
           })
           .then((e) => {
-            console.log(ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
-            resolve(URL.createObjectURL(e));
-          }).catch(e => {
-            reject(e);
-          });
+            return e;
+          })
         }
       });
     })

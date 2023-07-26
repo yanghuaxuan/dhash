@@ -6,7 +6,7 @@ input.addEventListener("input", () => {
 
   dHash(url).then(e => {
     const image = new Image();
-    image.src = e;
+    image.src = URL.createObjectURL(e);
     document.body.append(image);
   })
 });
