@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
       "target": "ES2021",
-      "module": "es2020",
       "declaration": true,
       "sourceMap": true,
+      "noImplicitAny": false,
       "outDir": "./dist",
       "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
       "removeComments": false,                /* Do not emit comments to output. */
+      "moduleResolution": "NodeNext",
+      "esModuleInterop": true,
 
       "strict": true /* Enable all strict type-checking options. */
     },

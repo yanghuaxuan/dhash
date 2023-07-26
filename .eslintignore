@@ -1,2 +1,4 @@
 bundle.js
 *.config.js
+index.d.ts
+index.js

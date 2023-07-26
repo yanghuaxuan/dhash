@@ -1,12 +1,12 @@
-import DHash from "../dist/src/index.js";
-
-DHash.dHash("xd");
+import DHash from "../dist/src/index.js"
 
 const input = document.querySelector("input");
 input.addEventListener("input", () => {
-  const img = new Image(400, 400);
-  img.src = URL.createObjectURL(input.files[0]);
+  const url = URL.createObjectURL(input.files[0]);
 
-  document.body.append(img);
-  console.log(img);
+  DHash.dHash(url).then(e => {
+    const image = new Image();
+    image.src = e;
+    document.body.append(image);
+  })
 });

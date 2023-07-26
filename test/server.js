@@ -3,25 +3,25 @@
 
 // CommonJs
 const fastify = require("fastify")({
-  logger: true
+    logger: true
 });
 
 const path = require("path");
 
 fastify.register(require("@fastify/static"), {
-  root: path.join(__dirname),
+    root: path.join(__dirname),
 });
 
 fastify.get("/", (request, reply) => {
-  reply.sendFile("index.html");
+    reply.sendFile("index.html");
 });
 
 fastify.get("/dhash", (request, reply) => {
-  reply.sendFile("bundle.js");
+    reply.sendFile("bundle.js");
 });
 
 // Run the server!
 fastify.listen({ port: 3000 }, (err, address) => {
-  if (err) throw err;
-  console.log(`Server is now listening on ${address}`);
+    if (err) throw err;
+    console.log(`Server is now listening on ${address}`);
 });
