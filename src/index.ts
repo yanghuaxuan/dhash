@@ -24,8 +24,8 @@ const resize = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: n
   hermite.resample(ctx.canvas, width, height, false, finish_handler);
 });
 
-const dHash = (path: string, hs = 8): Promise<Blob> => {
-    return new Promise((resolve) => {
+const dHash = (path: string, hs = 8): Promise<Blob> => 
+new Promise((resolve, reject) => {
       const img = new Image()
       img.src = path;
 
@@ -38,15 +38,14 @@ const dHash = (path: string, hs = 8): Promise<Blob> => {
 
           grayscale(ctx);
           resize(ctx, hs + 1, hs)
-          .then(() => {
-            return canvas.convertToBlob()
-          })
+          .then(() => canvas.convertToBlob())
           .then((e) => {
-            return e;
+            resolve(e);
           })
+        } else {
+          reject(new Error("Cannot get Canvas context!"));
         }
       });
     })
-  }
 
 export default dHash;
