@@ -1,5 +1,4 @@
-class DHash {
-  static dHash(path: string) {
+const dHash = (path: string) => {
     return new Promise((resolve, reject) => {
       const img = new Image()
       img.src = path;
@@ -20,6 +19,5 @@ class DHash {
       });
     })
   }
-}
 
-export default DHash;
+export default dHash;
