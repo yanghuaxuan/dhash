@@ -24,7 +24,6 @@ const resize = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: n
   hermite.resample(ctx.canvas, width, height, false, finish_handler);
 });
 
-/** TODO */
 /** Horizontal difference hash computation 
  * 
  * Based on: https://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
