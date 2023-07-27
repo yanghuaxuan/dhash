@@ -30,7 +30,7 @@ const resize = (ctx: OffscreenCanvasRenderingContext2D, width: number, height: n
  * Based on: https://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html
 */
 const hash = (imgData: Uint8ClampedArray) => {
-  const res: Array<number> = [];
+  let res = "";
 
   for (let i = 0; i < imgData.length - 4; i += 4) {
     /** Calcluate luminance pixel */
@@ -44,14 +44,14 @@ const hash = (imgData: Uint8ClampedArray) => {
     const B1 = imgData[i + 2 + 4]; 
     const lum1 = (0.2126*R1 + 0.7152*G1 + 0.0722*B1);
 
-    res.push(lum > lum1 ? 1 : 0);
+    res += lum > lum1 ? 1 : 0;
   }
 
   return res;
 }
 
-const dHash = (path: string, hs = 8): Promise<Array<number>> => 
-new Promise((resolve, reject) => {
+const dHash = (path: string, hs = 8) => 
+new Promise<string>((resolve, reject) => {
       const img = new Image()
       img.src = path;
 
