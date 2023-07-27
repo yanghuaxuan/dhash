@@ -66,16 +66,8 @@ new Promise<string>((resolve, reject) => {
           .then(() => { 
             /** Create a new canvas that is of the same size as the new resized image */
             const imgData = ctx.getImageData(0,0, hs + 1, hs);
-            const res = new OffscreenCanvas(hs + 1, hs);
-            const resCtx = res.getContext("2d");
-            if (resCtx) {
-              resCtx.putImageData(imgData, 0, 0);
 
-              resolve(hash(imgData.data));
-
-            } else {
-              reject(new Error("Cannot get Canvas context!"));
-            }
+            resolve(hash(imgData.data));
           })
         } else {
           reject(new Error("Cannot get Canvas context!"));
