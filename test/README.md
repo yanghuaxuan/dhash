@@ -1,5 +1,5 @@
-# dHash Library Tests
-A simple webserver setup for testing dHash
+# dHash library demonstrating
+A simple webserver setup for testing and demonstrating the power of dhash using hamming distance.
 
 ## Instructions
 1. `cd test`
